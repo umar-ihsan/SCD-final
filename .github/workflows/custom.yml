@@ -1,0 +1,28 @@
+name: Custom Workflow Integration
+
+on:
+  push:
+    branches:
+      - release/v2
+
+jobs:
+  custom_workflow:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Add your custom workflow steps here
+      - name: Run Custom Workflow Step 1
+        run: echo "Running Custom Workflow Step 1"
+      
+      - name: Run Custom Workflow Step 2
+        run: echo "Running Custom Workflow Step 2"
+      
+      # Add more custom workflow steps as needed
