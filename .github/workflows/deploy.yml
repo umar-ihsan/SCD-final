@@ -14,7 +14,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '21' # Make sure this version matches the one you want to use based on your package.json
+        node-version: '20' # Make sure this version matches the one you want to use based on your package.json
 
     - name: Install dependencies
       run: npm install
@@ -32,5 +32,8 @@ jobs:
 
     - name: Build and Push Docker image
       run: |
-        docker build -t 070668544025.dkr.ecr.us-east-1.amazonaws.com/umerihsanputin .
-        docker push 070668544025.dkr.ecr.us-east-1.amazonaws.com/umerihsanputin
+        # Build the Docker image with a unique tag
+        docker build -t 070668544025.dkr.ecr.us-east-1.amazonaws.com/umerihsanputin:${{ github.run_id }} .
+    
+        # Push the Docker image with the unique tag
+        docker push 070668544025.dkr.ecr.us-east-1.amazonaws.com/umerihsanputin:${{ github.run_id }}
